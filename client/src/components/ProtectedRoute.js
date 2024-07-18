@@ -36,6 +36,7 @@ function ProtectedRoute({ children }) {
           label: (
             <span
             onClick={() => {
+              console.log(user.role);
               if (user.role === 'admin') {
                 navigate("/admin");
               } else if (user.role === 'partner') {

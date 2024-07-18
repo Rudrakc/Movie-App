@@ -39,14 +39,17 @@ const BookShow = () => {
     let rows = Math.ceil(totalSeats / columns);
 
     return (
-      <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center  justify-center">
         <div className="w-100 max-width-600 mx-auto mb-25px">
-          <p className="text-center mb-10px">
+          <p className="text-center mb-10px ">
             Screen this side, you will be watching in this direction
           </p>
           <div className="screen-div"></div>
         </div>
-        <ul className="seat-ul justify-content-center">
+        <div className="w-full flex justify-center">
+
+        
+        <ul className="seat-ul w-100 justify-center items-center">
           {Array.from(Array(rows).keys()).map((row) => {
             return Array.from(Array(columns).keys()).map((column) => {
               let seatNumber = row * columns + column + 1;
@@ -106,6 +109,7 @@ const BookShow = () => {
             });
           })}
         </ul>
+        </div>
 
         <div className="d-flex bottom-card justify-content-between w-100 max-width-600 mx-auto mb-25px mt-3">
           <div className="flex-1">
@@ -152,7 +156,7 @@ const BookShow = () => {
       if (response.success) {
         message.success(response.message);
         book(response.data);
-         console.log(response);
+        console.log(response);
       } else {
         message.error(response.message);
       }
@@ -162,9 +166,6 @@ const BookShow = () => {
       dispatch(hideLoading());
     }
   };
-
-
-
 
   useEffect(() => {
     getData();
@@ -211,9 +212,7 @@ const BookShow = () => {
               {selectedSeats.length > 0 && (
                 <StripeCheckout
                   token={onToken}
-                  amount={selectedSeats.length * show.ticketPrice*100}
-            
-        
+                  amount={selectedSeats.length * show.ticketPrice * 100}
                   stripeKey="pk_test_51JKPQWSJULHQ0FL7VOkMrOMFh0AHMoCFit29EgNlVRSvFkDxSoIuY771mqGczvd6bdTHU1EkhJpojOflzoIFGmj300Uj4ALqXa"
                 >
                   {/* Use this one in some situation=> pk_test_eTH82XLklCU1LJBkr2cSDiGL001Bew71X8  */}
